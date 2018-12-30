@@ -1,0 +1,15 @@
+pagetitle
+HYPHENATION
+PRON
+FREQ
+POS
+GRAM
+speaker1
+speaker2
+DEF
+EXAMPLE
+PROPFORM
+REFLEX
+REFHWD
+ThesBox
+((IdoceEntry Entry))

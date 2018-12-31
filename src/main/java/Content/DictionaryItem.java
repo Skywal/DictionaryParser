@@ -24,7 +24,7 @@ public class DictionaryItem {
     /**
      * explanation of the word
      */
-    private StringBuffer example; //explanation of the word
+    private StringBuffer definition; //explanation of the word
     //endregion
 
     //region get/set
@@ -41,8 +41,8 @@ public class DictionaryItem {
         return transcriptionUs.toString();
     }
 
-    public String getExample() {
-        return example.toString();
+    public String getDefinition() {
+        return definition.toString();
     }
 
     /**
@@ -59,7 +59,7 @@ public class DictionaryItem {
      * Change size of the buffer and set new sting
      * @param transcriptionEn new string
      */
-    public void setTranscriptionEn(String transcriptionEn) {
+    public void setTranscriptionUk(String transcriptionEn) {
         if(isExist(transcriptionEn)) {
             initTranscriptionEn(transcriptionEn.length()); // set new size of the buffer
             this.transcriptionEn.replace(0, transcriptionEn.length(), transcriptionEn);
@@ -77,21 +77,21 @@ public class DictionaryItem {
     }
     /**
      * Change size of the buffer and set new sting
-     * @param example new string
+     * @param definition new string
      */
-    public void setExample(String example) {
-        if(isExist(example)) {
-            initExample(example.length()); // set new size of the buffer
-            this.example.replace(0, example.length(), example);
+    public void setDefinition(String definition) {
+        if(isExist(definition)) {
+            initDefinition(definition.length()); // set new size of the buffer
+            this.definition.replace(0, definition.length(), definition);
         }
     }
 
     //endregion
 
     //region construct
-    public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String example){
+    public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String definition){
         initialize();
-        defaultValue(word, transcriptionEn, transcriptionUs, example);
+        defaultValue(word, transcriptionEn, transcriptionUs, definition);
     }
 
     public DictionaryItem(String word){
@@ -106,13 +106,13 @@ public class DictionaryItem {
         initWord(standardLength);
         initTranscriptionEn(standardLength);
         initTranscriptionUs(standardLength);
-        initExample(standardLength);
+        initDefinition(standardLength);
     }
     private void defaultValue(String word, String transcriptionEn, String transcriptionUs, String example){
         setWord(word);
-        setTranscriptionEn(transcriptionEn);
+        setTranscriptionUk(transcriptionEn);
         setTranscriptionUs(transcriptionUs);
-        setExample(example);
+        setDefinition(example);
     }
     //endregion
 
@@ -146,9 +146,9 @@ public class DictionaryItem {
      * initialize StringBuffer object with given length
      * @param length size of the buffer
      */
-    private void initExample(int length){
+    private void initDefinition(int length){
         if(isPositiveOrZero(length))
-            example = new StringBuffer(length);
+            definition = new StringBuffer(length);
     }
     //endregion
 

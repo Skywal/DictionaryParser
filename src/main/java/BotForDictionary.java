@@ -1,6 +1,5 @@
 import Content.DictionaryItem;
 import Content.LocalDictionary;
-import FileWork.ReadFromFile;
 import Final.Strings;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +19,6 @@ public class BotForDictionary {
         dictionaryItem.setWord("chop");
         Document doc = Jsoup.connect(Strings.URL_BASE_DICTIONARY + dictionaryItem.getWord()).get();
 
-
 //        Element transkription = doc.select("span.ipa").after("span.ipa").first();
 
         Element transkriptionUK = doc.select("span.uk").first();
@@ -32,15 +30,14 @@ public class BotForDictionary {
         Element example = doc.select("div.sense-body").first();
         Elements concreteExamples = example.select("div.def-block.pad-indent");
 
-
-        dictionaryItem.setTranscriptionEn(finalTranslUK.text());
+        dictionaryItem.setTranscriptionUk(finalTranslUK.text());
         dictionaryItem.setTranscriptionUs(finalTranslUS.text());
 
         StringBuilder content = new StringBuilder();
         for(Element el : concreteExamples){
             content.append(el.text() + "\n");
         }
-        dictionaryItem.setExample(content.toString());
+        dictionaryItem.setDefinition(content.toString());
 
 //        System.out.println("text is " + example.text());
 //        System.out.println(concreteExample.text());
@@ -78,10 +75,9 @@ public class BotForDictionary {
         System.out.println("Word in dictionary is: " + dictionary.getWord(0).getWord());
         System.out.println("UK transcription is: " + dictionary.getWord(0).getTranscriptionEn());
         System.out.println("US transcription is: " + dictionary.getWord(0).getTranscriptionUs());
-        System.out.println("Explanation is: " + dictionary.getWord(0).getExample());
+        System.out.println("Explanation is: " + dictionary.getWord(0).getDefinition());
 
     }
-
     }
 
 }

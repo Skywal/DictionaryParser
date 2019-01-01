@@ -4,3 +4,5 @@
 src/test/
 #folder target
 target/
+#database connection information
+database.properties

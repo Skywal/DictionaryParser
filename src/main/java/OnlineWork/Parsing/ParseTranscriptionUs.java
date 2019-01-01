@@ -29,10 +29,18 @@ public class ParseTranscriptionUs extends Parser{
 
     @Override
     public void setTextToStorage(DictionaryItem target) {
-        if (isExist(target) && isExist(targetItemContainer)){
-            target.setTranscriptionUs(targetItemContainer.text());
-        }
-        else
+//        if (isExist(target) && isExist(targetItemContainer)){
+//            target.setTranscriptionUs(targetItemContainer.text());
+//        }
+//        else
+//            printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
+
+        if (isExist(targetItemContainer)){
+            if (isExist(target)) {
+                target.setTranscriptionUs(targetItemContainer.text());
+            } else
+                printErrorMsg(Strings.ERROR_MISSING_TARGET_ITEM_CONTAINER);
+        } else
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
 
     }

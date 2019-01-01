@@ -22,6 +22,10 @@ public abstract class Parser {
      * target container with text
      */
     protected Element targetItemContainer; //target container with text
+    /**
+     * title of the page which generate error
+     */
+    private String title;
     //endregion
 
     //region get/set
@@ -51,6 +55,12 @@ public abstract class Parser {
     }
     //endregion
 
+    //region internal
+    private void getTittleOfThePage(Document document){
+        title = document.title();
+    }
+    //endregion
+
     //region external
     /**
      * make one parsing type, like get  UK transcription or get definition of the word
@@ -58,6 +68,8 @@ public abstract class Parser {
      * @param item result of parsing
      */
     public void parseNode(Document doc, DictionaryItem item){
+        getTittleOfThePage(doc); // for errors messaging
+
         parsingMethod(doc, item);
 
         if (isExist(nextParser)){
@@ -90,7 +102,7 @@ public abstract class Parser {
      * @param msg error message
      */
     public void printErrorMsg(String msg){
-        System.out.println(getClassName() + msg);
+        System.out.println( getClassName() + msg + title);
     }
 
     //endregion

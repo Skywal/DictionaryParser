@@ -18,9 +18,6 @@ public class ReadFromFile {
      * buffer
      */
     BufferedReader bufferedReader; //buffer
-
-//    StringBuilder contentBuilder;
-//    LocalDictionary parser;
     /**
      * path to file
      */
@@ -38,54 +35,13 @@ public class ReadFromFile {
     }
 
     private void initialize(){
-//        contentBuilder = new StringBuilder();
-//        parser = new LocalDictionary();
     }
 
     private void defaultValue(String filePath){
         this.filePath = filePath;
     }
     //endregion
-
-    //region external
-
-    /**
-     * Read file and return a string like in file
-     * File should be in UTF-8 encoding and Windows endline style
-     * @return
-     */
-    public void readLineByLineCommonPattern(LocalDictionary parser){
-        try{
-            if(isStringExists(filePath)) {
-                initFileInpStream(filePath);
-                initInpStreamReader(fileInputStream);
-                initBufferedReader(inputStreamReader);
-            }
-//            fileInputStream = new FileInputStream(filePath);
-//            inputStreamReader = new InputStreamReader(fileInputStream);
-//            bufferedReader = new BufferedReader(inputStreamReader);
-
-            while ((line = bufferedReader.readLine()) != null)
-                parser.addNewWord(line, null, null, null);
-//                contentBuilder.append(line).append("\n");
-
-        }
-        catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage());
-        }
-        catch (IOException ioex){
-            System.out.println(ioex.getMessage());
-        }
-        finally {
-            closeFileInpStream();
-            closeInpStreamReader();
-            closeBufferedReader();
-        }
-
-//        return contentBuilder.toString();
-    }
-    //endregion
-
+    
     //region boolean
     private boolean isStringExists(String str){
         return str != null;
@@ -153,6 +109,40 @@ public class ReadFromFile {
         }catch (IOException ioex){
             System.out.println("Problem while closing bufferedReader: " + ioex.getMessage());
         }
+    }
+    //endregion
+
+    //region external
+
+    /**
+     * Read file and return a string like in file
+     * File should be in UTF-8 encoding and Windows endline style
+     * @return
+     */
+    public void readLineByLineCommonPattern(LocalDictionary localDictionary){
+        try{
+            if(isStringExists(filePath)) {
+                initFileInpStream(filePath);
+                initInpStreamReader(fileInputStream);
+                initBufferedReader(inputStreamReader);
+            }
+
+            while ((line = bufferedReader.readLine()) != null)
+                localDictionary.addNewWord(line, null, null, null);
+
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage());
+        }
+        catch (IOException ioex){
+            System.out.println(ioex.getMessage());
+        }
+        finally {
+            closeFileInpStream();
+            closeInpStreamReader();
+            closeBufferedReader();
+        }
+
     }
     //endregion
 

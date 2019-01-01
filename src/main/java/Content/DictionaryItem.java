@@ -33,7 +33,7 @@ public class DictionaryItem {
         return word.toString();
     }
 
-    public String getTranscriptionEn() {
+    public String getTranscriptionUk() {
         return transcriptionEn.toString();
     }
 
@@ -117,7 +117,6 @@ public class DictionaryItem {
     //endregion
 
     //region internal
-
     /**
      * initialize StringBuffer object with given length
      * @param length size of the buffer

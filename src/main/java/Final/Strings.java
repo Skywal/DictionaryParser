@@ -10,7 +10,7 @@ public class Strings {
     //endregion
 
     //region File source
-    public final static String PATH_WORDS_TO_WORK_WITH = "source/sourceWords.txt";
+    public final static String PATH_TO_WORDS_LOCAL_SOURCE = "source/sourceWords.txt";
     //endregion
 
     //region Text containers names

@@ -35,6 +35,15 @@ public class LocalDictionary {
     }
     //endregion
 
+    //region boolean
+    private boolean isExist(DictionaryItem item){
+        return item != null;
+    }
+    private boolean isBiggerOrEqual(int first, int second){
+        return first >= second;
+    }
+    //endregion
+
     //region public
 
     /**
@@ -61,8 +70,77 @@ public class LocalDictionary {
         wordsList.add(dictionaryItem);
     }
 
-    public void parseWords(){
+    /**
+     * Set new value of the word in dictionary by index
+     * @param index index of the word
+     * @param newWord new word
+     * @param newTranscUk new UK transcription
+     * @param newTranscUs new US transcription
+     * @param newDefinition new definition
+     */
+    public void changeWordInDictionary(int index, String newWord, String newTranscUk, String newTranscUs,
+                                       String newDefinition){
+        if (isBiggerOrEqual(index, 0)) {
+            changeWord(index, newWord);
+            changeTrUk(index, newTranscUk);
+            changeTrUs(index, newTranscUs);
+            changeDefinition(index, newDefinition);
+        }
+    }
 
+    /**
+     * Set new value of the word in dictionary by index
+     * @param index index of the word
+     * @param item word object
+     */
+    public void changeWordInDictionary(int index, DictionaryItem item){
+        if (isExist(item))
+            changeWordInDictionary(
+                    index,
+                    item.getWord(),
+                    item.getTranscriptionUk(),
+                    item.getTranscriptionUs(),
+                    item.getDefinition()
+            );
+    }
+    //endregion
+
+    //region internal
+
+    /**
+     * change word in dictionary by index
+     * @param index index of the word in dictionary
+     * @param word new word
+     */
+    private void changeWord(int index, String word){
+        getWord(index).setWord(word);
+    }
+
+    /**
+     * change transcription UK in dictionary by index
+     * @param index index of the word in dictionary
+     * @param transcUk new UK transcription
+     */
+    private void changeTrUk(int index, String transcUk){
+        getWord(index).setTranscriptionUk(transcUk);
+    }
+
+    /**
+     * change transcription US in dictionary by index
+     * @param index index of the word in dictionary
+     * @param transcUs new US transcription
+     */
+    private void changeTrUs(int index, String transcUs){
+        getWord(index).setTranscriptionUs(transcUs);
+    }
+
+    /**
+     * change definition in dictionary by index
+     * @param index index of the word in dictionary
+     * @param definition new definition of the word
+     */
+    private void changeDefinition(int index, String definition){
+        getWord(index).setDefinition(definition);
     }
     //endregion
 }

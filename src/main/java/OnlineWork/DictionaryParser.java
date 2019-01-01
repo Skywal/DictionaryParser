@@ -1,12 +1,16 @@
 package OnlineWork;
 
 import Content.DictionaryItem;
+import OnlineWork.Parsing.Definition;
 import OnlineWork.Parsing.Parser;
 import OnlineWork.Parsing.TranscriptionUk;
 import OnlineWork.Parsing.TranscriptionUs;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+/**
+ * this class subscriber of the Parser and define parsing methods
+ */
 public class DictionaryParser {
     //region fields
     /**
@@ -40,7 +44,7 @@ public class DictionaryParser {
         item = new DictionaryItem();
         parseTranscriptionUk = new TranscriptionUk();
         parseTranscriptionUs = new TranscriptionUs();
-        parseDefinition = new TranscriptionUk();
+        parseDefinition = new Definition();
 
         setChain();
     }
@@ -66,7 +70,6 @@ public class DictionaryParser {
     //endregion
 
     //region public
-
     /**
      * connect to a certain page using URL
      * @param url path to web site
@@ -88,7 +91,6 @@ public class DictionaryParser {
         if(isNotNull(webPage)) {
             parseTranscriptionUk.parseNode(webPage, item);
         }
-
         return item;
     }
     //endregion

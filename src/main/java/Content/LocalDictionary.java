@@ -2,6 +2,9 @@ package Content;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains whole formed dictionary and methods to interact with this dictionary
+ */
 public class LocalDictionary {
     //region fields
     /**

@@ -5,17 +5,10 @@ import Final.Strings;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+/**
+ * this class defines concrete algorithm for parsing US transcription form the web page
+ */
 public class TranscriptionUs extends Parser{
-    //region fields
-    /**
-     * transcription container element
-     */
-    private Element transcriptContainer; // transcription container element
-    /**
-     * transcription text container
-     */
-    private Element transcriptText; // transcription text container
-    //endregion
 
     //region construct
     public TranscriptionUs(){
@@ -26,13 +19,18 @@ public class TranscriptionUs extends Parser{
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
-            transcriptContainer = doc.select(Strings.SPAN_US).first();
-            transcriptText = transcriptContainer.select(Strings.SPAN_IPA).first();
+            parentContainer = doc.select(Strings.SPAN_US).first();                  // get parent container
+            targetItemContainer = parentContainer.select(Strings.SPAN_IPA).first(); // get concrete that what we need
         } else 
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 
-        if (isExist(item)){
-            item.setTranscriptionUs(transcriptText.text());
+        setTextToStorage(item);
+    }
+
+    @Override
+    public void setTextToStorage(DictionaryItem target) {
+        if (isExist(target)){
+            target.setTranscriptionUs(targetItemContainer.text());
         }
         else
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);

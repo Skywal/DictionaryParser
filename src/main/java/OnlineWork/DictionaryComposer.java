@@ -5,15 +5,24 @@ import Content.LocalDictionary;
 import FileWork.ReadFromFile;
 import Final.Strings;
 
-
+/**
+ * This class composing local reading and web-page parsing parts of the program.
+ * Therefore it's building final LocalDictionary object
+ */
 public class DictionaryComposer {
     //region fields
     /**
      * parser object
      */
     private DictionaryParser dictionaryParser; //parser object
-    private DictionaryItem dictionaryItem;
-    private ReadFromFile readFromFile;
+    /**
+     * intermediate object for saving words
+     */
+    private DictionaryItem dictionaryItem; //intermediate object for saving words
+    /**
+     * Read form file
+     */
+    private ReadFromFile readFromFile; //Read form file
     //endregion
 
     //region construct
@@ -46,7 +55,6 @@ public class DictionaryComposer {
     //endregion
 
     //region internal
-
     /**
      * forming full path to needed page
      * @param ending ending of the URL

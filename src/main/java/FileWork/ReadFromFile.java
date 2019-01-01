@@ -4,6 +4,9 @@ import Content.LocalDictionary;
 
 import java.io.*;
 
+/**
+ * this class reads from disc certain file string by string
+ */
 public class ReadFromFile {
     //region fields
     /**
@@ -41,7 +44,7 @@ public class ReadFromFile {
         this.filePath = filePath;
     }
     //endregion
-    
+
     //region boolean
     private boolean isStringExists(String str){
         return str != null;
@@ -110,6 +113,15 @@ public class ReadFromFile {
             System.out.println("Problem while closing bufferedReader: " + ioex.getMessage());
         }
     }
+
+    /**
+     * close all buffers
+     */
+    private void closeAll(){
+        closeFileInpStream();
+        closeInpStreamReader();
+        closeBufferedReader();
+    }
     //endregion
 
     //region external
@@ -127,8 +139,10 @@ public class ReadFromFile {
                 initBufferedReader(inputStreamReader);
             }
 
-            while ((line = bufferedReader.readLine()) != null)
+            while ((line = bufferedReader.readLine()) != null) {
                 localDictionary.addNewWord(line, null, null, null);
+//                System.out.println("-= " + line + " =-");
+            }
 
         }
         catch (FileNotFoundException ex){
@@ -138,9 +152,7 @@ public class ReadFromFile {
             System.out.println(ioex.getMessage());
         }
         finally {
-            closeFileInpStream();
-            closeInpStreamReader();
-            closeBufferedReader();
+            closeAll();
         }
 
     }

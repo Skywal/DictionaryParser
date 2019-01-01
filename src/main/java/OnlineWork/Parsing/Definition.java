@@ -6,12 +6,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * this class defines concrete algorithm for parsing definition of the word form the web page
+ */
 public class Definition extends Parser{
     //region fields
-    /**
-     * container element for definition part
-     */
-    private Element definitionContainer; //container element for definition part
     /**
      * elements which contains text
      */
@@ -57,12 +56,18 @@ public class Definition extends Parser{
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)){
-            definitionContainer = doc.select(Strings.DIV_SENSE_BODY).first();
-            definitionTexts = definitionContainer.select(Strings.DIV_DEF_BLOCK_PAD_INDENT);
+            parentContainer = doc.select(Strings.DIV_SENSE_BODY).first();               // get parent container
+            definitionTexts = parentContainer.select(Strings.DIV_DEF_BLOCK_PAD_INDENT); // get concrete that what we need
         }
-        if (isExist(item)){
+
+        setTextToStorage(item);
+    }
+
+    @Override
+    public void setTextToStorage(DictionaryItem target) {
+        if (isExist(target)){
             formString(); // form resulting string
-            item.setDefinition(content.toString());
+            target.setDefinition(content.toString());
         }
     }
     //endregion

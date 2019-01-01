@@ -1,5 +1,8 @@
 package Final;
 
+/**
+ * All text constants
+ */
 public class Strings {
     //region URL
     /**

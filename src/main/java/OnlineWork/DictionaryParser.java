@@ -1,6 +1,6 @@
 package OnlineWork;
 
-import Final.Strings;
+import Content.DictionaryItem;
 import OnlineWork.Parsing.Parser;
 import OnlineWork.Parsing.TranscriptionUk;
 import OnlineWork.Parsing.TranscriptionUs;
@@ -13,6 +13,10 @@ public class DictionaryParser {
      * downloaded web-page to work with
      */
     protected Document webPage; //downloaded web-page to work with
+    /**
+     * parsed information
+     */
+    protected DictionaryItem item; // parsed information
     /**
      * parse method for getting UK transcription
      */
@@ -33,9 +37,12 @@ public class DictionaryParser {
         defaultValue();
     }
     private void initialize(){
+        item = new DictionaryItem();
         parseTranscriptionUk = new TranscriptionUk();
         parseTranscriptionUs = new TranscriptionUs();
         parseDefinition = new TranscriptionUk();
+
+        setChain();
     }
     private void defaultValue(){
         webPage = null;
@@ -45,6 +52,16 @@ public class DictionaryParser {
     //region boolean
     private boolean isNotNull(Document doc){
         return doc != null;
+    }
+    //endregion
+
+    //region internal
+    /**
+     * set up chain of parsing
+     */
+    private void setChain(){
+        parseTranscriptionUk.setNextParser(parseTranscriptionUs);
+        parseTranscriptionUs.setNextParser(parseDefinition);
     }
     //endregion
 
@@ -63,11 +80,16 @@ public class DictionaryParser {
         }
     }
 
-    public void parseWebPage(){
-//        if(isNotNull(webPage)) {
-//            String title = webPage.title();
-//            System.out.println(title);
-//        }
+    /**
+     * Pass through all chain of parsers
+     * @return
+     */
+    public DictionaryItem parseWebPage(){
+        if(isNotNull(webPage)) {
+            parseTranscriptionUk.parseNode(webPage, item);
+        }
+
+        return item;
     }
     //endregion
 }

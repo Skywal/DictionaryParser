@@ -29,7 +29,7 @@ public class BotForDictionary {
             System.out.println("ParseWord: " + dictionary.getWord(i).getWord());
             System.out.println("Transcription UK: " + dictionary.getWord(i).getTranscriptionUk());
             System.out.println("Transcription US: " + dictionary.getWord(i).getTranscriptionUs());
-            System.out.println("ParseDefinition: " + dictionary.getWord(i).getDefinition());
+//            System.out.println("ParseDefinition: " + dictionary.getWord(i).getDefinition());
         }
 
     }

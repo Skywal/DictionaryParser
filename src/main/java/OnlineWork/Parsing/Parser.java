@@ -46,6 +46,9 @@ public abstract class Parser {
     protected boolean isExist(DictionaryItem item){
         return  item != null;
     }
+    protected boolean isExist(Element el){
+        return el != null;
+    }
     //endregion
 
     //region external

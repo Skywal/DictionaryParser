@@ -29,7 +29,7 @@ public class ParseTranscriptionUs extends Parser{
 
     @Override
     public void setTextToStorage(DictionaryItem target) {
-        if (isExist(target)){
+        if (isExist(target) && isExist(targetItemContainer)){
             target.setTranscriptionUs(targetItemContainer.text());
         }
         else

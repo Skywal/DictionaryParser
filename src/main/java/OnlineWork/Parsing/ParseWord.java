@@ -23,7 +23,7 @@ public class ParseWord extends Parser {
 
     @Override
     public void setTextToStorage(DictionaryItem target) {
-        if (isExist(target)){
+        if (isExist(target) && isExist(targetItemContainer)){
             target.setWord(targetItemContainer.text());
 //            System.out.println("-== " + targetItemContainer.text() + " ==-");
         } else

@@ -1,10 +1,7 @@
 package OnlineWork;
 
 import Content.DictionaryItem;
-import OnlineWork.Parsing.Definition;
-import OnlineWork.Parsing.Parser;
-import OnlineWork.Parsing.TranscriptionUk;
-import OnlineWork.Parsing.TranscriptionUs;
+import OnlineWork.Parsing.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -21,6 +18,7 @@ public class DictionaryParser {
      * parsed information
      */
     protected DictionaryItem item; // parsed information
+    private Parser parseWord;
     /**
      * parse method for getting UK transcription
      */
@@ -42,9 +40,10 @@ public class DictionaryParser {
     }
     private void initialize(){
         item = new DictionaryItem();
-        parseTranscriptionUk = new TranscriptionUk();
-        parseTranscriptionUs = new TranscriptionUs();
-        parseDefinition = new Definition();
+        parseWord = new ParseWord();
+        parseTranscriptionUk = new ParseTranscriptionUk();
+        parseTranscriptionUs = new ParseTranscriptionUs();
+        parseDefinition = new ParseDefinition();
 
         setChain();
     }
@@ -64,6 +63,7 @@ public class DictionaryParser {
      * set up chain of parsing
      */
     private void setChain(){
+        parseWord.setNextParser(parseTranscriptionUk);
         parseTranscriptionUk.setNextParser(parseTranscriptionUs);
         parseTranscriptionUs.setNextParser(parseDefinition);
     }
@@ -89,7 +89,7 @@ public class DictionaryParser {
      */
     public DictionaryItem parseWebPage(){
         if(isNotNull(webPage)) {
-            parseTranscriptionUk.parseNode(webPage, item);
+            parseWord.parseNode(webPage, item);
         }
         return item;
     }

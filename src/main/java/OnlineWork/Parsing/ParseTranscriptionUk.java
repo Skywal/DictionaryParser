@@ -3,15 +3,14 @@ package OnlineWork.Parsing;
 import Content.DictionaryItem;
 import Final.Strings;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 /**
- * this class defines concrete algorithm for parsing US transcription form the web page
+ * this class defines concrete algorithm for parsing UK transcription form the web page
  */
-public class TranscriptionUs extends Parser{
+public class ParseTranscriptionUk extends Parser{
 
     //region construct
-    public TranscriptionUs(){
+    public ParseTranscriptionUk(){
         super();
     }
     //endregion
@@ -19,21 +18,20 @@ public class TranscriptionUs extends Parser{
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
-            parentContainer = doc.select(Strings.SPAN_US).first();                  // get parent container
+            parentContainer = doc.select(Strings.SPAN_UK).first();                  // get parent container
             targetItemContainer = parentContainer.select(Strings.SPAN_IPA).first(); // get concrete that what we need
-        } else 
+        } else
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 
         setTextToStorage(item);
+
     }
 
     @Override
     public void setTextToStorage(DictionaryItem target) {
         if (isExist(target)){
-            target.setTranscriptionUs(targetItemContainer.text());
-        }
-        else
+            target.setTranscriptionUk(targetItemContainer.text());
+        } else
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
-
     }
 }

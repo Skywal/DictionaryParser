@@ -18,6 +18,10 @@ public class Strings {
 
     //region Text containers names
     /**
+     * container for word text
+     */
+    public final static String SPAN_HW = "span.hw"; //container for word text
+    /**
      * parent container for UK transcription text
      */
     public final static String SPAN_UK = "span.uk"; //parent container for UK transcription text

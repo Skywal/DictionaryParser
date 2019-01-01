@@ -4,33 +4,28 @@ import Content.DictionaryItem;
 import Final.Strings;
 import org.jsoup.nodes.Document;
 
-/**
- * this class defines concrete algorithm for parsing UK transcription form the web page
- */
-public class TranscriptionUk extends Parser{
-
+public class ParseWord extends Parser {
     //region construct
-    public TranscriptionUk(){
-        super();
+    public ParseWord(){
+
     }
     //endregion
 
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
-            parentContainer = doc.select(Strings.SPAN_UK).first();                  // get parent container
-            targetItemContainer = parentContainer.select(Strings.SPAN_IPA).first(); // get concrete that what we need
+            targetItemContainer = doc.select(Strings.SPAN_HW).first(); // get concrete that what we need
         } else
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 
         setTextToStorage(item);
-
     }
 
     @Override
     public void setTextToStorage(DictionaryItem target) {
         if (isExist(target)){
-            target.setTranscriptionUk(targetItemContainer.text());
+            target.setWord(targetItemContainer.text());
+//            System.out.println("-== " + targetItemContainer.text() + " ==-");
         } else
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
     }

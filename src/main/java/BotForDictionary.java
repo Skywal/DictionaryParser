@@ -26,10 +26,10 @@ public class BotForDictionary {
         dictionaryComposer.makeDictionary(dictionary);
 
         for (int i = 0; i < dictionary.getWordsList().size(); i++) {
-            System.out.println("Word: " + dictionary.getWord(i).getWord());
+            System.out.println("ParseWord: " + dictionary.getWord(i).getWord());
             System.out.println("Transcription UK: " + dictionary.getWord(i).getTranscriptionUk());
             System.out.println("Transcription US: " + dictionary.getWord(i).getTranscriptionUs());
-            System.out.println("Definition: " + dictionary.getWord(i).getDefinition());
+            System.out.println("ParseDefinition: " + dictionary.getWord(i).getDefinition());
         }
 
     }

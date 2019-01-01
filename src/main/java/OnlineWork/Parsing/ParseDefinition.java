@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 /**
  * this class defines concrete algorithm for parsing definition of the word form the web page
  */
-public class Definition extends Parser{
+public class ParseDefinition extends Parser{
     //region fields
     /**
      * elements which contains text
@@ -22,7 +22,7 @@ public class Definition extends Parser{
     //endregion
 
     //region construct
-    public Definition(){
+    public ParseDefinition(){
         initialize();
     }
     private void initialize(){

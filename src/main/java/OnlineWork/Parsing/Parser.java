@@ -91,6 +91,12 @@ public abstract class Parser {
     public abstract void setTextToStorage(DictionaryItem target);
 
     /**
+     * handle exceptions case when website has no elements what we search for
+     * @param target storage object
+     */
+    public abstract void handleEmptyElements(DictionaryItem target);
+
+    /**
      * technical method to print class name for error message
      * @return class name
      */

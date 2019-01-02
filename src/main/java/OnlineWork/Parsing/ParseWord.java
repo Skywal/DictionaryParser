@@ -11,6 +11,7 @@ public class ParseWord extends Parser {
     }
     //endregion
 
+    //region external
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
@@ -28,7 +29,15 @@ public class ParseWord extends Parser {
                 target.setWord(targetItemContainer.text());
             } else
                 printErrorMsg(Strings.ERROR_MISSING_TARGET_ITEM_CONTAINER);
-        } else
+        } else {
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
+            handleEmptyElements(target);
+        }
     }
+
+    @Override
+    public void handleEmptyElements(DictionaryItem target) {
+        target.setWord("");
+    }
+    //endregion
 }

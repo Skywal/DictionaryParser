@@ -58,7 +58,11 @@ public class ParseDefinition extends Parser{
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)){
             parentContainer = doc.select(Strings.DIV_SENSE_BODY).first();               // get parent container
-            definitionTexts = parentContainer.select(Strings.DIV_DEF_BLOCK_PAD_INDENT); // get concrete that what we need
+
+            if (isExist(parentContainer))
+                definitionTexts = parentContainer.select(Strings.DIV_DEF_BLOCK_PAD_INDENT); // get concrete that what we need
+            else
+                printErrorMsg(Strings.ERROR_MISSING_PARENT_CONTAINER);
         } else
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 
@@ -70,8 +74,15 @@ public class ParseDefinition extends Parser{
         if (isExist(target)){
             formString(); // form resulting string
             target.setDefinition(content.toString());
-        } else
+        } else {
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
+            handleEmptyElements(target);
+        }
+    }
+
+    @Override
+    public void handleEmptyElements(DictionaryItem target) {
+        target.setDefinition("");
     }
     //endregion
 

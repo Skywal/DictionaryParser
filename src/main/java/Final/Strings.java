@@ -47,5 +47,6 @@ public class Strings {
     public final static String ERROR_MISSING_DOCUMENT = " missing Document ";
     public final static String ERROR_MISSING_DICTIONARY_ITEM = " missing DictionaryItem ";
     public final static String ERROR_MISSING_TARGET_ITEM_CONTAINER = " missing TargetItemContainer ";
+    public final static String ERROR_MISSING_PARENT_CONTAINER = " missing ParentContainer for word ";
     //endregion
 }

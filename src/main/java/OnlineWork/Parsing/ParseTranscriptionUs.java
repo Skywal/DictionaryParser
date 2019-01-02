@@ -16,11 +16,16 @@ public class ParseTranscriptionUs extends Parser{
     }
     //endregion
 
+    //region external
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
             parentContainer = doc.select(Strings.SPAN_US).first();                  // get parent container
-            targetItemContainer = parentContainer.select(Strings.SPAN_IPA).first(); // get concrete that what we need
+
+            if (isExist(parentContainer))
+                targetItemContainer = parentContainer.select(Strings.SPAN_IPA).first(); // get concrete that what we need
+            else
+                printErrorMsg(Strings.ERROR_MISSING_PARENT_CONTAINER);
         } else 
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 
@@ -40,8 +45,16 @@ public class ParseTranscriptionUs extends Parser{
                 target.setTranscriptionUs(targetItemContainer.text());
             } else
                 printErrorMsg(Strings.ERROR_MISSING_TARGET_ITEM_CONTAINER);
-        } else
+        } else {
             printErrorMsg(Strings.ERROR_MISSING_DICTIONARY_ITEM);
+            handleEmptyElements(target);
+        }
 
     }
+
+    @Override
+    public void handleEmptyElements(DictionaryItem target) {
+        target.setTranscriptionUs("");
+    }
+    //endregion
 }

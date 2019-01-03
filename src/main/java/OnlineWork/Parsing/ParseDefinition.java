@@ -42,6 +42,7 @@ public class ParseDefinition extends Parser{
      */
     private void formString(){
         if(isExist(definitionTexts)){
+            initialize();
             for(Element el : definitionTexts){
                 content.append(concatenationStr(el.text(), "\n"));
             }

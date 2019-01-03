@@ -48,5 +48,15 @@ public class Strings {
     public final static String ERROR_MISSING_DICTIONARY_ITEM = " missing DictionaryItem ";
     public final static String ERROR_MISSING_TARGET_ITEM_CONTAINER = " missing TargetItemContainer ";
     public final static String ERROR_MISSING_PARENT_CONTAINER = " missing ParentContainer for word ";
+
+    public final static String ERROR_CANT_OPEN_DATABASEPROPERTIES = "Can't open database.properties file";
+    public final static String ERROR_CANT_OPEN_DATABASE = "Can't open database";
+    //endregion
+
+    //region Database Access Object
+    public final static String PROPERTY_NAME_URL = "url";
+    public final static String PROPERTY_NAME_USERNAME = "username";
+    public final static String PROPERTY_NAME_PASSWORD = "password";
+    public final static String PROPERTY_FILENAME =  "database.properties";
     //endregion
 }

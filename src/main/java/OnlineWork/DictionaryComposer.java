@@ -34,9 +34,11 @@ public class DictionaryComposer {
     private void initialize(){
         dictionaryParser = new DictionaryParser();
         readFromFile = new ReadFromFile(Strings.PATH_TO_WORDS_LOCAL_SOURCE);
+        initDictionaryItem();
+    }
+    private void initDictionaryItem(){
         dictionaryItem = new DictionaryItem();
     }
-
     private void defaultValue(){
 
     }
@@ -72,6 +74,7 @@ public class DictionaryComposer {
      */
     public void getWordFromWebByPattern(String URL){
         if(isExist(URL)){
+            initDictionaryItem();
             dictionaryParser.connectToPage(URL);
             dictionaryItem = dictionaryParser.parseWebPage();
         }

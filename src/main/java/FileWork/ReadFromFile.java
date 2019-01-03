@@ -70,6 +70,11 @@ public class ReadFromFile {
      * @param fileInputStream initialized obj
      */
     private void initInpStreamReader(FileInputStream fileInputStream){
+//        try {
+//            inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+//        } catch (IOException ioe){
+//            ioe.printStackTrace();
+//        }
         inputStreamReader = new InputStreamReader(fileInputStream);
     }
 

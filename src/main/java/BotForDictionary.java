@@ -1,22 +1,19 @@
-import Content.DictionaryItem;
 import Content.LocalDictionary;
-import Final.Strings;
+import DAO.DictionaryDao;
 import OnlineWork.DictionaryComposer;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class BotForDictionary {
     //region fields
     static LocalDictionary dictionary;
     static DictionaryComposer dictionaryComposer;
+    static DictionaryDao dictionaryDao;
     //endregion
 
     //region construct
     public static void initialize(){
         dictionaryComposer = new DictionaryComposer();
         dictionary = new LocalDictionary();
+        dictionaryDao = new DictionaryDao();
     }
     //endregion
 
@@ -26,9 +23,10 @@ public class BotForDictionary {
         dictionaryComposer.makeDictionary(dictionary);
 
         for (int i = 0; i < dictionary.getWordsList().size(); i++) {
-            System.out.println("ParseWord: " + dictionary.getWord(i).getWord());
-            System.out.println("Transcription UK: " + dictionary.getWord(i).getTranscriptionUk());
-            System.out.println("Transcription US: " + dictionary.getWord(i).getTranscriptionUs());
+            dictionaryDao.connect(dictionary.getWord(i));
+//            System.out.println("ParseWord: " + dictionary.getWord(i).getWord());
+//            System.out.println("Transcription UK: " + dictionary.getWord(i).getTranscriptionUk());
+//            System.out.println("Transcription US: " + dictionary.getWord(i).getTranscriptionUs());
 //            System.out.println("ParseDefinition: " + dictionary.getWord(i).getDefinition());
         }
 

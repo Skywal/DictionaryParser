@@ -42,7 +42,7 @@ public class DictionaryItem {
     }
 
     public String getDefinition() {
-        return definition.toString();
+        return definition.toString().replace("'","`");
     }
 
     /**

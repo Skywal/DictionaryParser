@@ -69,7 +69,7 @@ public class DictionaryComposer {
 
     //region external
     /**
-     * connect to certain URL, parse it and add to DictionaryItem object
+     * connectInsert to certain URL, parse it and add to DictionaryItem object
      * @param URL path to page
      */
     public void getWordFromWebByPattern(String URL){

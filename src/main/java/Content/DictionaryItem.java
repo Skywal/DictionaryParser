@@ -8,7 +8,7 @@ public class DictionaryItem {
     /**
      * standard size of StringBuffer exemplars
      */
-    private int standardLength = 16; //standard size of StringBuffer exemplars
+    private int standardLength; //standard size of StringBuffer exemplars
     /**
      * the word in the dictionary
      */
@@ -29,18 +29,34 @@ public class DictionaryItem {
 
     //region get/set
 
+    /**
+     *
+     * @return String
+     */
     public String getWord() {
         return word.toString();
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getTranscriptionUk() {
         return transcriptionEn.toString();
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getTranscriptionUs() {
         return transcriptionUs.toString();
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getDefinition() {
         return definition.toString().replace("'","`");
     }
@@ -90,6 +106,9 @@ public class DictionaryItem {
 
     //region construct
     public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String definition){
+
+        standardLength = 16; //starting length
+
         initialize();
         defaultValue(word, transcriptionEn, transcriptionUs, definition);
     }

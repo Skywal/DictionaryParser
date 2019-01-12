@@ -71,7 +71,7 @@ public class DictionaryParser {
 
     //region public
     /**
-     * connect to a certain page using URL
+     * connectInsert to a certain page using URL
      * @param url path to web site
      */
     public void connectToPage(String url){

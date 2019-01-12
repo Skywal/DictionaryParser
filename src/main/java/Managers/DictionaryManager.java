@@ -1,15 +1,16 @@
-package OnlineWork;
+package Managers;
 
 import Content.DictionaryItem;
 import Content.LocalDictionary;
 import FileWork.ReadFromFile;
 import Final.Strings;
+import OnlineWork.DictionaryParser;
 
 /**
  * This class composing local reading and web-page parsing parts of the program.
  * Therefore it's building final LocalDictionary object
  */
-public class DictionaryComposer {
+public class DictionaryManager {
     //region fields
     /**
      * parser object
@@ -26,7 +27,7 @@ public class DictionaryComposer {
     //endregion
 
     //region construct
-    public DictionaryComposer(){
+    public DictionaryManager(){
         initialize();
         defaultValue();
     }
@@ -84,7 +85,7 @@ public class DictionaryComposer {
      * read words from local file
      * @param resultDictionary final dictionary object
      */
-    public void makeDictionaryFromLocal(LocalDictionary resultDictionary){
+    public void readLocalInstanceWords(LocalDictionary resultDictionary){
         if(isExist(readFromFile) && isExist(resultDictionary))
             readFromFile.readLineByLineCommonPattern(resultDictionary);
     }
@@ -96,7 +97,7 @@ public class DictionaryComposer {
      */
     public void makeDictionary(LocalDictionary resultDictionary){
         if (isExist(resultDictionary)) {
-            makeDictionaryFromLocal(resultDictionary);
+            readLocalInstanceWords(resultDictionary);
 
             for (int i = 0; i < resultDictionary.getWordsList().size(); i++) {
                 getWordFromWebByPattern( formFullURL( resultDictionary.getWord( i ).getWord() ) );

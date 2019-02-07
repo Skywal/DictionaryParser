@@ -15,7 +15,7 @@ public class ParseWord extends Parser {
     @Override
     public void parsingMethod(Document doc, DictionaryItem item) {
         if (isExist(doc)) {
-            targetItemContainer = doc.select(Strings.SPAN_HW).first(); // get concrete that what we need
+            targetItemContainer = doc.select(Strings.H2_HEADWORD).first(); // get concrete that what we need
         } else
             printErrorMsg(Strings.ERROR_MISSING_DOCUMENT);
 

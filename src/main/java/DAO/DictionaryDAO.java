@@ -131,6 +131,8 @@ public class DictionaryDAO {
         } catch (Exception ex){
             System.out.println(Strings.ERROR_CANT_OPEN_DATABASE);
             System.out.println(ex);
+            System.out.print("... at: ");
+            System.out.println(dictionaryItem.getWord());
         }
     }
 

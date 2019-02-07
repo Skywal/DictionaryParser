@@ -121,7 +121,8 @@ public class LocalDictionary {
                     item.getWord(),
                     item.getTranscriptionUk(),
                     item.getTranscriptionUs(),
-                    item.getDefinition()
+                    item.getDefinition(),
+                    item.getLanguagePart()
             );
     }
 

@@ -39,7 +39,7 @@ public class DictionaryItem {
      * @return String
      */
     public String getWord() {
-        return word.toString();
+        return word.toString().replace("'","`");
     }
 
     /**
@@ -47,7 +47,7 @@ public class DictionaryItem {
      * @return String
      */
     public String getTranscriptionUk() {
-        return transcriptionEn.toString();
+        return transcriptionEn.toString().replace("'","`");
     }
 
     /**
@@ -55,7 +55,7 @@ public class DictionaryItem {
      * @return String
      */
     public String getTranscriptionUs() {
-        return transcriptionUs.toString();
+        return transcriptionUs.toString().replace("'","`");
     }
 
     /**

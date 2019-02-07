@@ -17,10 +17,13 @@ public class Strings {
     //endregion
 
     //region Text containers names
+
+    //old container for word text
+//    public final static String SPAN_HW = "span.hw"; //container for word text
     /**
      * container for word text
      */
-    public final static String SPAN_HW = "span.hw"; //container for word text
+    public final static String H2_HEADWORD = "h2.headword"; //container for word text
     /**
      * parent container for UK transcription text
      */

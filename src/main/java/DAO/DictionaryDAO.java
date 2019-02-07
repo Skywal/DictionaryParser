@@ -95,6 +95,15 @@ public class DictionaryDAO {
                 "'" + transcriptionUs + "'," +
                 "'" + definition +"');";
     }
+    private String statementInsert(String word, String transcriptionUk, String transcriptionUs, String definition,
+                                   String languagePart){
+        return "INSERT INTO WordList(Word, TranscriptionUk, TranscriptionUs, Definition, LanguagePart) VALUES (" +
+                "'" + word + "'," +
+                "'" + transcriptionUk + "'," +
+                "'" + transcriptionUs + "'," +
+                "'" + definition + "'," +
+                "'" + languagePart + "');";
+    }
     //endregion
 
     //region external
@@ -114,7 +123,8 @@ public class DictionaryDAO {
                         dictionaryItem.getWord(),
                         dictionaryItem.getTranscriptionUk(),
                         dictionaryItem.getTranscriptionUs(),
-                        dictionaryItem.getDefinition()
+                        dictionaryItem.getDefinition(),
+                        dictionaryItem.getLanguagePart()
                 ));
             }
 

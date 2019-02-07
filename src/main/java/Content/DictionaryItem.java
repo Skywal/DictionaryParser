@@ -25,6 +25,11 @@ public class DictionaryItem {
      * explanation of the word
      */
     private StringBuffer definition; //explanation of the word
+
+    /**
+     * what part of the language is the word?
+     */
+    private StringBuffer languagePart; // what part of the language is the word?
     //endregion
 
     //region get/set
@@ -59,6 +64,14 @@ public class DictionaryItem {
      */
     public String getDefinition() {
         return definition.toString().replace("'","`");
+    }
+
+    /**
+     *
+     * @return String
+     */
+    public String getLanguagePart(){
+        return languagePart.toString();
     }
 
     /**
@@ -101,24 +114,33 @@ public class DictionaryItem {
             this.definition.replace(0, definition.length(), definition);
         }
     }
-
+    public void setLanguagePart(String languagePart){
+        if(isExist(languagePart)){
+            initLanguagePart(languagePart.length()); // set new size of the buffer
+            this.languagePart.replace(0, languagePart.length(), languagePart);
+        }
+    }
     //endregion
 
     //region construct
-    public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String definition){
+    public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String definition,
+                          String languagePart){
 
         standardLength = 16; //starting length
 
         initialize();
-        defaultValue(word, transcriptionEn, transcriptionUs, definition);
+        defaultValue(word, transcriptionEn, transcriptionUs, definition, languagePart);
+    }
+    public DictionaryItem(String word, String transcriptionEn, String transcriptionUs, String definition){
+        this(word, transcriptionEn, transcriptionUs, definition, null);
     }
 
     public DictionaryItem(String word){
-        this(word, null, null, null);
+        this(word, null, null, null, null);
     }
 
     public DictionaryItem(){
-        this(null,null,null,null);
+        this(null,null,null,null, null);
     }
 
     private void initialize(){
@@ -126,12 +148,15 @@ public class DictionaryItem {
         initTranscriptionEn(standardLength);
         initTranscriptionUs(standardLength);
         initDefinition(standardLength);
+        initLanguagePart(standardLength);
     }
-    private void defaultValue(String word, String transcriptionEn, String transcriptionUs, String example){
+    private void defaultValue(String word, String transcriptionEn, String transcriptionUs, String example,
+                              String languagePart){
         setWord(word);
         setTranscriptionUk(transcriptionEn);
         setTranscriptionUs(transcriptionUs);
         setDefinition(example);
+        setLanguagePart(languagePart);
     }
     //endregion
 
@@ -167,6 +192,16 @@ public class DictionaryItem {
     private void initDefinition(int length){
         if(isPositiveOrZero(length))
             definition = new StringBuffer(length);
+    }
+
+    /**
+     * initialize StringBuffer object with given length
+     * @param length size of the buffer
+     */
+    private void initLanguagePart(int length){
+        if(isPositiveOrZero(length)){
+            languagePart = new StringBuffer(length);
+        }
     }
     //endregion
 

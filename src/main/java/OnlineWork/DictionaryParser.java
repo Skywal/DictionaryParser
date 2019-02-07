@@ -31,6 +31,8 @@ public class DictionaryParser {
      * parse method for getting definition
      */
     private Parser parseDefinition; //parse method for getting definition
+
+    private Parser parseLanguagePart;
     //endregion
 
     //region construct
@@ -44,6 +46,8 @@ public class DictionaryParser {
         parseTranscriptionUk = new ParseTranscriptionUk();
         parseTranscriptionUs = new ParseTranscriptionUs();
         parseDefinition = new ParseDefinition();
+
+        parseLanguagePart = new ParseLanguagePart();
 
         setChain();
     }
@@ -63,9 +67,11 @@ public class DictionaryParser {
      * set up chain of parsing
      */
     private void setChain(){
+
         parseWord.setNextParser(parseTranscriptionUk);
         parseTranscriptionUk.setNextParser(parseTranscriptionUs);
         parseTranscriptionUs.setNextParser(parseDefinition);
+        parseDefinition.setNextParser(parseLanguagePart);
     }
     //endregion
 

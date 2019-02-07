@@ -24,7 +24,7 @@ public class BotForDictionary {
         dictionaryManager.makeDictionary(dictionary);
 
         dataManager.insertInto(dictionary);
-        
+
     }
 
 }

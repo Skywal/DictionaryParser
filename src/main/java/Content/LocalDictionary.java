@@ -64,7 +64,24 @@ public class LocalDictionary {
                 example
         ));
     }
-
+    /**
+     * create new DictionaryItem and add it into wordsList
+     * @param word
+     * @param transcriptionEn
+     * @param transcriptionUs
+     * @param example
+     * @param languagePart
+     */
+    public void addNewWord(String word, String transcriptionEn, String transcriptionUs, String example,
+                           String languagePart){
+        wordsList.add(new DictionaryItem(
+                word,
+                transcriptionEn,
+                transcriptionUs,
+                example,
+                languagePart
+        ));
+    }
     /**
      * add existing dictionaryItem exemplar
      * @param dictionaryItem
@@ -83,12 +100,13 @@ public class LocalDictionary {
      */
     public void changeWordInDictionary(int index, String newWord, String newTranscUk, String newTranscUs,
                                        String newDefinition){
-        if (isBiggerOrEqual(index, 0)) {
-            changeWord(index, newWord);
-            changeTrUk(index, newTranscUk);
-            changeTrUs(index, newTranscUs);
-            changeDefinition(index, newDefinition);
-        }
+        this.changeWordInDictionary(index, newWord, newTranscUk, newTranscUs, newDefinition, null);
+//        if (isBiggerOrEqual(index, 0)) {
+//            changeWord(index, newWord);
+//            changeTrUk(index, newTranscUk);
+//            changeTrUs(index, newTranscUs);
+//            changeDefinition(index, newDefinition);
+//        }
     }
 
     /**
@@ -105,6 +123,26 @@ public class LocalDictionary {
                     item.getTranscriptionUs(),
                     item.getDefinition()
             );
+    }
+
+    /**
+     * Set new value of the word in dictionary by index
+     * @param index index of the word
+     * @param newWord new word
+     * @param newTranscUk new UK transcription
+     * @param newTranscUs new US transcription
+     * @param newDefinition new definition
+     * @param newLanguagePart new part of the language
+     */
+    public void changeWordInDictionary(int index, String newWord, String newTranscUk, String newTranscUs,
+                                       String newDefinition, String newLanguagePart){
+        if (isBiggerOrEqual(index, 0)) {
+            changeWord(index, newWord);
+            changeTrUk(index, newTranscUk);
+            changeTrUs(index, newTranscUs);
+            changeDefinition(index, newDefinition);
+            changeLangugaPart(index, newLanguagePart);
+        }
     }
     //endregion
 
@@ -144,6 +182,9 @@ public class LocalDictionary {
      */
     private void changeDefinition(int index, String definition){
         getWord(index).setDefinition(definition);
+    }
+    private void changeLangugaPart(int index, String languagePart){
+        getWord(index).setLanguagePart(languagePart);
     }
     //endregion
 }

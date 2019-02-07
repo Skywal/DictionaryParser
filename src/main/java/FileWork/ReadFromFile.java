@@ -145,7 +145,7 @@ public class ReadFromFile {
             }
 
             while ((line = bufferedReader.readLine()) != null) {
-                localDictionary.addNewWord(line, null, null, null);
+                localDictionary.addNewWord(line, null, null, null, null);
 //                System.out.println("-= " + line + " =-");
             }
 

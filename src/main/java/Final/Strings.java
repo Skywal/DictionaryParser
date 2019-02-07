@@ -41,6 +41,16 @@ public class Strings {
      * definition text container
      */
     public final static String DIV_DEF_BLOCK_PAD_INDENT = "div.def-block.pad-indent"; //definition text container
+    /**
+     * language part
+     */
+    public final static String SPAN_POS = "span.pos"; // language part
+    /**
+     * parent container for language part
+     */
+    public final static String DIV_DI_HEAD_NORMAL_ENTRY = "div.di-head.normal-entry"; //parent container for language part
+    public final static String SPAN_DI_INFO = "span.di-info"; //parent container for language part
+
     //endregion
 
     //region Error messages
